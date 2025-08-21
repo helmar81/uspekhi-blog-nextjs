@@ -29,13 +29,16 @@ const prompt = ai.definePrompt({
   name: 'suggestTagsPrompt',
   input: {schema: SuggestTagsInputSchema},
   output: {schema: SuggestTagsOutputSchema},
-  prompt: `You are a blog post tag suggestion expert.
+  prompt: `You are an expert at suggesting relevant tags for blog posts.
+Your task is to analyze the provided blog post content and suggest exactly 3 tags.
+The tags should be relevant to the main topics of the post and help with discoverability.
 
-  Given the content of a blog post, you will suggest 3 relevant tags that can be used to categorize the content and improve its discoverability.
+Blog Post Content:
+---
+{{{postContent}}}
+---
 
-  Blog Post Content: {{{postContent}}}
-
-  Tags:`, // Removed extra newline here
+Based on the content, provide 3 relevant tags.`,
 });
 
 const suggestTagsFlow = ai.defineFlow(
