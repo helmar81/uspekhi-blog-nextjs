@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { format } from 'date-fns';
 import TagSuggester from '@/components/tag-suggester';
 import { Separator } from '@/components/ui/separator';
+import ReactMarkdown from 'react-markdown';
 
 type Props = {
   params: {
@@ -48,8 +49,8 @@ export default async function Post({ params }: Props) {
       
       <Separator />
 
-      <div className="prose whitespace-pre-wrap">
-        {postData.content}
+      <div className="prose dark:prose-invert max-w-none">
+        <ReactMarkdown>{postData.content}</ReactMarkdown>
       </div>
       
       <Separator />
