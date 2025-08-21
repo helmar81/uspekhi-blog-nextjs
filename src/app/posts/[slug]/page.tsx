@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import TagSuggester from '@/components/tag-suggester';
 import { Separator } from '@/components/ui/separator';
 import ReactMarkdown from 'react-markdown';
+import ImageGenerator from '@/components/image-generator';
 
 type Props = {
   params: {
@@ -54,8 +55,11 @@ export default async function Post({ params }: Props) {
       </div>
       
       <Separator />
-
-      <TagSuggester postContent={postData.content} />
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <TagSuggester postContent={postData.content} />
+        <ImageGenerator postContent={postData.content} />
+      </div>
     </article>
   );
 }
