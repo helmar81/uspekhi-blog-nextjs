@@ -7,6 +7,7 @@ import { Menu } from 'lucide-react';
 import { PT_Sans, Playfair_Display } from 'next/font/google'
 import { cn } from '@/lib/utils';
 import Social from '@/components/Social';
+import Analytics from '@/components/Analytics';
 
 const fontHeadline = Playfair_Display({
   subsets: ['latin'],
@@ -48,6 +49,7 @@ export default function RootLayout({
           fontBody.variable
         )}
       >
+        <Analytics />
         <header className="py-4 px-4 sm:px-6 lg:px-8 border-b sticky top-0 bg-background/95 backdrop-blur-sm z-10">
           <div className="max-w-6xl mx-auto flex justify-between items-center">
             <Link href="/" className="text-2xl font-bold font-headline text-foreground hover:text-primary transition-colors">
