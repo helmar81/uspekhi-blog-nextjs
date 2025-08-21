@@ -6,6 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import { PT_Sans, Playfair_Display } from 'next/font/google'
 import { cn } from '@/lib/utils';
+import Social from '@/components/Social';
 
 const fontHeadline = Playfair_Display({
   subsets: ['latin'],
@@ -81,10 +82,18 @@ export default function RootLayout({
         <main className="flex-grow w-full max-w-6xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
           {children}
         </main>
-        <footer className="py-6 px-4 sm:px-6 lg:px-8 border-t">
-            <p className="text-center text-sm text-muted-foreground max-w-6xl mx-auto">
-                © {new Date().getFullYear()} StarterStory. All rights reserved.
-            </p>
+        <footer className="py-9 lg:py-12 text-center bg-muted/50">
+          <div className="mb-4">
+            <nav>
+              <ul className="flex justify-center space-x-4">
+                {navLinks.slice(0, -1).map((link) => (
+                   <li key={link.href}><a href={link.href} className="text-muted-foreground hover:text-primary">{link.label}</a></li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+          <Social />
+          <div className="text-sm y-5 text-muted-foreground">&copy;{new Date().getFullYear()} StarterStory</div>
         </footer>
       </body>
     </html>
