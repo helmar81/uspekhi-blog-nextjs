@@ -49,7 +49,7 @@ export default async function Post({ params }: Props) {
       
       <Separator />
 
-      <div className="prose dark:prose-invert max-w-none">
+      <div className="prose dark:prose-invert max-w-none prose-table:table-auto prose-table:w-full">
         <ReactMarkdown>{postData.content}</ReactMarkdown>
       </div>
       
