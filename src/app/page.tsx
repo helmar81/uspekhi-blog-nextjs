@@ -16,17 +16,17 @@ export default async function Home() {
   return (
     <div className="space-y-12">
       <div className="text-center space-y-4">
-        <h1 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter">USPEKHI</h1>
+        <h1 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter">StarterStory</h1>
         <p className="text-xl md:text-2xl text-muted-foreground">
-          Front to Back — Powered by AI
+          A starter blog template with AI-powered features.
         </p>
       </div>
       <div className="max-w-3xl mx-auto space-y-6 text-lg text-center">
         <p>
-            Blend fullstack development and artificial intelligence to turn bold ideas into scalable products.
+            Welcome to StarterStory, a place to share knowledge and stories. This template is designed to be a starting point for your own blog, with a clean design and AI-powered features to help you create content.
         </p>
         <p>
-            it's very possible that in the future, people without some form of AI augmentation (whether visual, cognitive, or social) might feel outpaced or even "replaced" in certain roles.
+            Explore the posts, experiment with the AI tag suggester, and make it your own.
         </p>
       </div>
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8">

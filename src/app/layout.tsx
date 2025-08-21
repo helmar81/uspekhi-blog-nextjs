@@ -4,10 +4,24 @@ import './globals.css';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
+import { PT_Sans, Playfair_Display } from 'next/font/google'
+import { cn } from '@/lib/utils';
+
+const fontHeadline = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-headline',
+});
+
+const fontBody = PT_Sans({
+  subsets: ['latin'],
+  variable: '--font-body',
+  weight: ['400', '700'],
+});
+
 
 export const metadata: Metadata = {
-  title: 'Uspekhi',
-  description: 'Front to Back — Powered by AI',
+  title: 'StarterStory',
+  description: 'A starter blog template with AI-powered features.',
 };
 
 const navLinks = [
@@ -24,18 +38,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
-      </head>
-      <body className="antialiased min-h-screen flex flex-col bg-background text-foreground">
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "antialiased min-h-screen flex flex-col bg-background text-foreground",
+          fontHeadline.variable,
+          fontBody.variable
+        )}
+      >
         <header className="py-4 px-4 sm:px-6 lg:px-8 border-b sticky top-0 bg-background/95 backdrop-blur-sm z-10">
           <div className="max-w-6xl mx-auto flex justify-between items-center">
             <Link href="/" className="text-2xl font-bold font-headline text-foreground hover:text-primary transition-colors">
-              Uspekhi
+              StarterStory
             </Link>
             <nav className="hidden md:flex items-center space-x-6">
               {navLinks.map((link) => (
@@ -69,7 +83,7 @@ export default function RootLayout({
         </main>
         <footer className="py-6 px-4 sm:px-6 lg:px-8 border-t">
             <p className="text-center text-sm text-muted-foreground max-w-6xl mx-auto">
-                © {new Date().getFullYear()} Uspekhi. All rights reserved.
+                © {new Date().getFullYear()} StarterStory. All rights reserved.
             </p>
         </footer>
       </body>
