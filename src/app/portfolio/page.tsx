@@ -14,7 +14,7 @@ export default function Portfolio() {
 
       <div className="mx-auto max-w-screen-md text-left space-y-6">
         <p className="text-base sm:text-lg leading-relaxed">
-          As a Level 3 Support Associate for Amazon, I excel at handling complex queries and escalated issues...
+          As a Level 3 Support Associate for Amazon, I excel at handling complex queries and escalated issues...xxxxxxxxxx
         </p>
 
         <p className="text-base sm:text-lg leading-relaxed">
@@ -38,17 +38,19 @@ export default function Portfolio() {
           <CardHeader>
             <CardTitle className="text-2xl font-bold tracking-tight">
               <a href="https://helmarbachle.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
-                My Resume
+                Resume/CV
               </a>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="relative w-full aspect-video rounded-md overflow-hidden">
-                <Image 
-                    src="https://placehold.co/500x300.png" 
-                    alt="Resume project screenshot" 
-                    fill
-                    style={{objectFit: 'cover'}}
+
+             
+              <Image 
+                  src="/cv.jpg" 
+                  alt="Resume project" 
+                  fill
+                  style={{objectFit: 'cover'}}
                     data-ai-hint="website screenshot"
                 />
             </div>
@@ -63,6 +65,103 @@ export default function Portfolio() {
           </CardContent>
         </Card>
       </div>
+
+
+      <div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://whatsapp-research.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+                My Resume
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+                 <Image 
+                  src="/whatsapp.jpg" 
+                  alt="Resume project" 
+                  fill
+                  style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created with Astro.js deployed on Firebase.
+            </CardDescription>
+            <Button asChild>
+              <a href="https://whatsapp-research.web.app/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+
+       <div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://trading-vibes.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+                My Resume
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+                <Image 
+                    src="/images/trading.png" 
+                    alt="Trading project" 
+                    fill
+                    style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created with Astro.js deployed on Firebase.
+            </CardDescription>
+            <Button asChild>
+              <a href="https://trading-vibes.web.app/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+<div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://trading-vibes.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+                My Resume
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+                <Image 
+                    src="/images/athens.jpg" 
+                    alt="Athens project" 
+                    fill
+                    style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created with Astro.js deployed on Firebase.
+            </CardDescription>
+            <Button asChild>
+              <a href="https://trading-vibes.web.app/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+
     </div>
   );
 }

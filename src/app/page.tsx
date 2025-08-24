@@ -1,54 +1,71 @@
 import Link from 'next/link';
 import { getSortedPostsData } from '@/lib/posts';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { format } from 'date-fns';
 import Image from 'next/image';
 
 export default async function Home() {
   const allPostsData = await getSortedPostsData();
-  const displayPosts = allPostsData.slice(0, 3);
+  const displayPosts = allPostsData.slice(0, 6);
+
+  // Make sure these files exist in your /public folder with exact casing
   const postImages = [
-      { src: "https://placehold.co/600x400.png", hint: "AI technology" },
-      { src: "https://placehold.co/600x400.png", hint: "cloud services" },
-      { src: "https://placehold.co/600x400.png", hint: "software development" }
+     { src: "/images/firebase.jpg", hint: "Firebase" }, 
+{ src: "/images/amz.jpg", hint: "Amazon Webservice" },
+  { src: "/images/astro.png", hint: "Astro" },
+  { src: "/images/github.png", hint: "GitHub" },
+
   ];
 
   return (
     <div className="space-y-12">
+      {/* Hero Section */}
       <div className="text-center space-y-4">
-        <h1 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter">StarterStory</h1>
+        <h1 className="text-6xl md:text-8xl font-bold font-headline tracking-tighter">
+          USPEKHI
+        </h1>
         <p className="text-xl md:text-2xl text-muted-foreground">
-          A starter blog template with AI-powered features.
+          Front to Back — Powered by AI
         </p>
       </div>
+
+      {/* Intro Section */}
       <div className="max-w-3xl mx-auto space-y-6 text-lg text-center">
         <p>
-            Welcome to StarterStory, a place to share knowledge and stories. This template is designed to be a starting point for your own blog, with a clean design and AI-powered features to help you create content.
+Blend fullstack development and artificial intelligence to turn bold ideas into scalable products.
+
         </p>
         <p>
-            Explore the posts, experiment with the AI tag suggester, and make it your own.
+         It’s very possible that in the future, people without some form of AI augmentation might feel outpaced or replaced.
         </p>
       </div>
+
+      {/* Posts Grid */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {displayPosts.map(({ slug, date, title }, index) => (
           <Link href={`/posts/${slug}`} key={slug}>
-            <Card className="hover:shadow-lg transition-all duration-300 h-full flex flex-col overflow-hidden rounded-lg">
-              <div className="relative w-full h-48">
-                <Image 
+            <Card className="group hover:shadow-lg transition-all duration-300 h-full flex flex-col overflow-hidden rounded-lg">
+              {/* Image */}
+              <div className="relative w-full h-48 overflow-hidden">
+                <Image
                   src={postImages[index % postImages.length].src}
                   alt={title}
                   fill
-                  style={{objectFit: 'cover'}}
-                  className="transition-transform duration-300 group-hover:scale-105"
+                  priority={index === 0} // preload first image
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
                   data-ai-hint={postImages[index % postImages.length].hint}
                 />
               </div>
+
+              {/* Card Content */}
               <CardHeader>
                 <CardTitle className="font-headline text-xl">
                   {title}
                 </CardTitle>
                 <CardDescription>
-                  <time dateTime={date}>{format(new Date(date), 'MM-dd-yyyy')}</time>
+                  <time dateTime={date}>
+                    {format(new Date(date), 'MM-dd-yyyy')}
+                  </time>
                 </CardDescription>
               </CardHeader>
             </Card>

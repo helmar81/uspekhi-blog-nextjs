@@ -22,8 +22,8 @@ const fontBody = PT_Sans({
 
 
 export const metadata: Metadata = {
-  title: 'StarterStory',
-  description: 'A starter blog template with AI-powered features.',
+  title: 'FullStack',
+  description: '  Front to Back — Powered by AI.',
 };
 
 const navLinks = [
@@ -96,7 +96,7 @@ export default function RootLayout({
             </nav>
           </div>
           <Social />
-          <div className="text-sm y-5 text-muted-foreground">&copy;{new Date().getFullYear()} StarterStory</div>
+          <div className="text-sm y-5 text-muted-foreground">&copy;{new Date().getFullYear()} USPEKHI</div>
         </footer>
       </body>
     </html>
