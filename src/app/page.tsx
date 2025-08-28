@@ -10,11 +10,12 @@ export default async function Home() {
 
   // Make sure these files exist in your /public folder with exact casing
   const postImages = [
-     { src: "/images/firebase.jpg", hint: "Firebase" }, 
-{ src: "/images/amz.jpg", hint: "Amazon Webservice" },
-  { src: "/images/astro.png", hint: "Astro" },
-  { src: "/images/github.png", hint: "GitHub" },
-
+    { src: "/images/firebase.jpg", hint: "Firebase" },
+    { src: "/images/amz.jpg", hint: "Amazon Webservice" },
+    { src: "/images/astro.png", hint: "Astro" },
+    { src: "/images/cloud.png", hint: "Cloud" },
+    { src: "/images/svelte.jpg", hint: "SvelteKit" },
+    { src: "/images/github.png", hint: "GitHub" },
   ];
 
   return (
