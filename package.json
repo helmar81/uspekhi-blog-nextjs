@@ -9,7 +9,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "firebase:build": "npm run build",
+    "firebase:deploy": "firebase deploy"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.14.1",
@@ -61,6 +63,8 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "firebase-frameworks": "^0.11.8",
+    "firebase-tools": "^14.15.1",
     "genkit-cli": "^1.14.1",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",

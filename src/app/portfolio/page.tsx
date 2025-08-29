@@ -143,7 +143,7 @@ export default function Portfolio() {
           <CardContent className="space-y-4">
             <div className="relative w-full aspect-video rounded-md overflow-hidden">
                 <Image 
-                    src="/images/builder.jpg" 
+                    src="/images/res.jpeg" 
                     alt="Athens project" 
                     fill
                     style={{objectFit: 'cover'}}
@@ -175,7 +175,7 @@ export default function Portfolio() {
           <CardContent className="space-y-4">
             <div className="relative w-full aspect-video rounded-md overflow-hidden">
                 <Image 
-                    src="/images/receipt.png" 
+                    src="/images/waffle.jpeg" 
                     alt="Receipt project" 
                     fill
                     style={{objectFit: 'cover'}}

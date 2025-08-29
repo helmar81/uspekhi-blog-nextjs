@@ -1,37 +1,63 @@
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import './globals.css';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu } from 'lucide-react';
-import { PT_Sans, Playfair_Display } from 'next/font/google'
-import { cn } from '@/lib/utils';
-import Social from '@/components/Social';
-import Analytics from '@/components/Analytics';
+import type { Metadata } from "next";
+import Link from "next/link";
+import "./globals.css";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
+import { PT_Sans, Playfair_Display } from "next/font/google";
+import { cn } from "@/lib/utils";
+import Social from "@/components/Social";
+import Analytics from "@/components/Analytics";
 
 const fontHeadline = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-headline',
+  subsets: ["latin"],
+  variable: "--font-headline",
 });
 
 const fontBody = PT_Sans({
-  subsets: ['latin'],
-  variable: '--font-body',
-  weight: ['400', '700'],
+  subsets: ["latin"],
+  variable: "--font-body",
+  weight: ["400", "700"],
 });
 
-
 export const metadata: Metadata = {
-  title: 'FullStack',
-  description: '  Front to Back — Powered by AI.',
+  title: "Uspekhi FullStack Blog",
+  description:
+    "Front to Back — Powered by AI. Created by Helmar Baechle. Covering fullstack development, AI, and beyond.",
+  authors: [{ name: "Helmar Baechle", url: "https://uspekhi.web.app/" }],
+  openGraph: {
+    title: "Uspekhi FullStack Blog",
+    description:
+      "Front to Back — Powered by AI. Created by Helmar Baechle.",
+    url: "https://uspekhi.web.app/", // update with your domain
+    siteName: "Uspekhi FullStack",
+    images: [
+      {
+        url: "/fullstack.jpg", // must be in /public
+        width: 1200,
+        height: 630,
+        alt: "Uspekhi FullStack Blog Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Uspekhi FullStack Blog",
+    description:
+      "Front to Back — Powered by AI. Created by Helmar Baechle.",
+    creator: "@yourtwitterhandle", // optional
+    images: ["/fullstack.jpg"],
+  },
 };
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/posts', label: 'Posts' },
-  { href: '/portfolio', label: 'Portfolio' },
-  { href: '/contact', label: 'Contact' },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/posts", label: "Posts" },
+  { href: "/portfolio", label: "Portfolio" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function RootLayout({
@@ -52,12 +78,19 @@ export default function RootLayout({
         <Analytics />
         <header className="py-4 px-4 sm:px-6 lg:px-8 border-b sticky top-0 bg-background/95 backdrop-blur-sm z-10">
           <div className="max-w-6xl mx-auto flex justify-between items-center">
-            <Link href="/" className="text-2xl font-bold font-headline text-foreground hover:text-primary transition-colors">
-              StarterStory
+            <Link
+              href="/"
+              className="text-2xl font-bold font-headline text-foreground hover:text-primary transition-colors"
+            >
+              FullStack
             </Link>
             <nav className="hidden md:flex items-center space-x-6">
               {navLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
+                >
                   {link.label}
                 </Link>
               ))}
@@ -72,7 +105,11 @@ export default function RootLayout({
                 <SheetContent side="right">
                   <div className="flex flex-col space-y-4 mt-8">
                     {navLinks.map((link) => (
-                      <Link key={link.href} href={link.href} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                      >
                         {link.label}
                       </Link>
                     ))}
@@ -90,13 +127,22 @@ export default function RootLayout({
             <nav>
               <ul className="flex justify-center space-x-4">
                 {navLinks.slice(0, -1).map((link) => (
-                   <li key={link.href}><a href={link.href} className="text-muted-foreground hover:text-primary">{link.label}</a></li>
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      className="text-muted-foreground hover:text-primary"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
                 ))}
               </ul>
             </nav>
           </div>
           <Social />
-          <div className="text-sm y-5 text-muted-foreground">&copy;{new Date().getFullYear()} USPEKHI</div>
+          <div className="text-sm y-5 text-muted-foreground">
+            &copy;{new Date().getFullYear()} USPEKHI — Created by Helmar Baechle
+          </div>
         </footer>
       </body>
     </html>

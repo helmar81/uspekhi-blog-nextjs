@@ -14,7 +14,7 @@ export default async function Home() {
     { src: "/images/amz.jpg", hint: "Amazon Webservice" },
     { src: "/images/astro.png", hint: "Astro" },
     { src: "/images/cloud.png", hint: "Cloud" },
-    { src: "/images/svelte.jpg", hint: "SvelteKit" },
+    { src: "/images/kit.jpeg", hint: "SvelteKit" },
     { src: "/images/github.png", hint: "GitHub" },
   ];
 
