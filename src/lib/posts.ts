@@ -1,103 +1,48 @@
-import fs from 'fs/promises';
-import path from 'path';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+import { remark } from "remark";
+import html from "remark-html";
 
-type PostMetadata = {
-  title: string;
-  date: string;
-};
+const postsDirectory = path.join(process.cwd(), "posts");
 
-type PostData = PostMetadata & {
-  slug: string;
-  content: string;
-};
+export function getSortedPostsData() {
+  const fileNames = fs.readdirSync(postsDirectory);
 
-const postsDirectory = path.join(process.cwd(), 'posts');
+  const markdownFiles = fileNames.filter(fileName => fileName.endsWith(".md"));
 
-async function parseMarkdown(fileName: string): Promise<PostData | null> {
-  try {
-    const slug = fileName.replace(/\.md$/, '');
+  const allPostsData = markdownFiles.map((fileName) => {
+    const id = fileName.replace(/\.md$/, "");
     const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = await fs.readFile(fullPath, 'utf8');
+    const fileContents = fs.readFileSync(fullPath, "utf8");
 
-    const frontmatterRegex = /^---\s*([\s\S]*?)\s*---/;
-    const match = frontmatterRegex.exec(fileContents);
-    
-    if (!match) {
-      console.warn(`Frontmatter not found in ${fileName}`);
-      return null;
-    }
-
-    const frontmatter = match[1];
-    const content = fileContents.slice(match[0].length).trim();
-
-    const metadata: Partial<PostMetadata> = {};
-    frontmatter.split('\n').forEach(line => {
-      const [key, ...valueParts] = line.split(':');
-      if (key && valueParts.length > 0) {
-        const trimmedKey = key.trim();
-        if (trimmedKey === 'title' || trimmedKey === 'date') {
-          metadata[trimmedKey as keyof PostMetadata] = valueParts.join(':').trim().replace(/['"]/g, '');
-        }
-      }
-    });
-
-    if (!metadata.title || !metadata.date) {
-        console.warn(`Missing title or date in ${fileName}`);
-        return null;
-    }
+    const matterResult = matter(fileContents);
 
     return {
-      slug,
-      content,
-      title: metadata.title,
-      date: metadata.date,
+      id,
+      ...(matterResult.data as { date: string; title: string; excerpt?: string }),
     };
-  } catch (error) {
-    console.error(`Error parsing markdown file ${fileName}:`, error);
-    return null;
-  }
+  });
+
+  return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export async function getSortedPostsData() {
-    try {
-        const fileNames = await fs.readdir(postsDirectory);
-        const allPostsDataPromises = fileNames
-            .filter(fileName => fileName.endsWith('.md'))
-            .map(fileName => parseMarkdown(fileName));
+export async function getPostData(id: string) {
+  const fullPath = path.join(postsDirectory, `${id}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
 
-        const allPostsData = (await Promise.all(allPostsDataPromises))
-            .filter((post): post is PostData => post !== null);
+  const matterResult = matter(fileContents);
 
-        return allPostsData.sort((a, b) => {
-            if (a.date < b.date) {
-                return 1;
-            } else {
-                return -1;
-            }
-        });
-    } catch (error) {
-        console.error("Could not read posts directory:", error);
-        return [];
-    }
-}
+  // Convert Markdown body into HTML
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content);
+  const contentHtml = processedContent.toString();
 
-export async function getAllPostSlugs() {
-  try {
-    const fileNames = await fs.readdir(postsDirectory);
-    return fileNames
-      .filter(fileName => fileName.endsWith('.md'))
-      .map(fileName => {
-        return {
-          slug: fileName.replace(/\.md$/, ''),
-        };
-      });
-  } catch (error) {
-    console.error("Could not read posts directory for slugs:", error);
-    return [];
-  }
-}
-
-export async function getPostData(slug: string): Promise<PostData | null> {
-  const fileName = `${slug}.md`;
-  return parseMarkdown(fileName);
+  return {
+    id,
+    contentHtml, // ✅ now available
+    excerpt: matterResult.data.excerpt || "", // optional excerpt
+    ...(matterResult.data as { date: string; title: string }),
+  };
 }

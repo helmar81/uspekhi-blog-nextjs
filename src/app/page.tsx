@@ -11,8 +11,8 @@ export default async function Home() {
   // Make sure these files exist in your /public folder with exact casing
   const postImages = [
     { src: "/images/firebase.jpg", hint: "Firebase" },
-    { src: "/images/amz.jpg", hint: "Amazon Webservice" },
-    { src: "/images/astro.png", hint: "Astro" },
+    { src: "/images/analytics.png", hint: "Google Analytics" },
+    { src: "/images/AWS.png", hint: "AWS" },
     { src: "/images/cloud.png", hint: "Cloud" },
     { src: "/images/kit.jpeg", hint: "SvelteKit" },
     { src: "/images/github.png", hint: "GitHub" },
@@ -43,8 +43,8 @@ Blend fullstack development and artificial intelligence to turn bold ideas into 
 
       {/* Posts Grid */}
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {displayPosts.map(({ slug, date, title }, index) => (
-          <Link href={`/posts/${slug}`} key={slug}>
+        {displayPosts.map(({ id, date, title }, index) => (
+          <Link href={`/posts/${id}`} key={id}>
             <Card className="group hover:shadow-lg transition-all duration-300 h-full flex flex-col overflow-hidden rounded-lg">
               {/* Image */}
               <div className="relative w-full h-48 overflow-hidden">

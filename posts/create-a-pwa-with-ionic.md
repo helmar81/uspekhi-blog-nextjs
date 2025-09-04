@@ -1,6 +1,6 @@
 ---
 title: 'Create a PWA with IONIC'
-date: '2024-06-01'
+date: '2023-06-01'
 ---
 
 ## Build fast, content-focused websites

@@ -1,10 +1,7 @@
 ---
 title: 'Firebase'
-date: '2025-08-24
-title: 'A Deep Dive into Firebase for Modern Web and Mobile Apps'
-description: 'We’ll explore what Firebase is, why it has become a favorite among developers, and when it’s the right (or wrong) choice compared to alternatives like AWS or Netlify.'
-
-heroImage: '../../assets/github.png'
+date: '2025-08-24'
+--- 
 
 # Choosing Your Backend: A Deep Dive into Firebase for Modern Web and Mobile Apps
 

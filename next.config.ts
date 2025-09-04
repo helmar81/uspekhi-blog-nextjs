@@ -1,15 +1,14 @@
-import type { NextConfig } from "next";
+// next.config.js
+const webpack = require("webpack");
 
-const nextConfig: NextConfig = {
-  webpack: (config) => {
-    // Ignore require.extensions warnings from handlebars
-    config.ignoreWarnings = [{ module: /handlebars/ }];
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  webpack: (config: any) => {
+    config.ignoreWarnings = [
+      { module: /handlebars/ }
+    ];
     return config;
-  },
-  typescript: {
-    // Allow production builds even if type errors exist
-    ignoreBuildErrors: true,
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;

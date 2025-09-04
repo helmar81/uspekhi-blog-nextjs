@@ -1,8 +1,6 @@
 ---
 title: 'Cloud Functions'
-description: 'Google Firebase'
 date: '2023-10-27'
-heroImage: '../../assets/github.png'
 ---
 
 

@@ -4,6 +4,13 @@ import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 
+// ✅ Tell TypeScript that gtag exists on window
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
 const pageview = (url: string) => {
   if (typeof window.gtag !== 'undefined') {
     window.gtag('config', process.env.NEXT_PUBLIC_GA_ID as string, {

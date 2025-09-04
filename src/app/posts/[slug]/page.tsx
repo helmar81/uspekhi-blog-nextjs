@@ -1,65 +1,53 @@
-import { getAllPostSlugs, getPostData } from '@/lib/posts';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { format } from 'date-fns';
-import TagSuggester from '@/components/tag-suggester';
-import { Separator } from '@/components/ui/separator';
-import ReactMarkdown from 'react-markdown';
-import ImageGenerator from '@/components/image-generator';
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { getPostData, getSortedPostsData } from "@/lib/posts";
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
+interface Props {
+  params: Promise<{ slug: string }>; // ✅ params is now async in Next.js 15
+}
 
+// ✅ Fix for metadata
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const postData = await getPostData(params.slug);
+  const { slug } = await params; // await params
+  const postData = await getPostData(slug);
+
   if (!postData) {
     return {
-      title: 'Post not found',
+      title: "Post not found",
+      description: "The requested post does not exist.",
     };
   }
+
   return {
-    title: `${postData.title} | StarterStory`,
+    title: postData.title,
+    description: postData.excerpt || "A blog post on Uspekhi Blog",
   };
 }
 
+// ✅ Fix for dynamic static params (SSG)
 export async function generateStaticParams() {
-  const paths = await getAllPostSlugs();
-  return paths;
+  const posts = getSortedPostsData();
+
+  return posts.map((post) => ({
+    slug: post.id,
+  }));
 }
 
+// ✅ Fix for page rendering
 export default async function Post({ params }: Props) {
-  const postData = await getPostData(params.slug);
+  const { slug } = await params; // await params
+  const postData = await getPostData(slug);
 
   if (!postData) {
     notFound();
   }
 
   return (
-    <article className="space-y-8">
-      <header className="text-center space-y-2">
-        <h1 className="text-4xl md:text-5xl font-bold font-headline tracking-tight">
-          {postData.title}
-        </h1>
-        <p className="text-muted-foreground">
-          <time dateTime={postData.date}>{format(new Date(postData.date), 'LLLL d, yyyy')}</time>
-        </p>
-      </header>
-      
-      <Separator />
-
-      <div className="prose dark:prose-invert max-w-none prose-table:table-auto prose-table:w-full">
-        <ReactMarkdown>{postData.content}</ReactMarkdown>
-      </div>
-      
-      <Separator />
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <TagSuggester postContent={postData.content} />
-        <ImageGenerator postContent={postData.content} />
-      </div>
+    <article className="prose prose-lg max-w-none mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold font-headline mb-4">{postData.title}</h1>
+      <p className="text-sm text-muted-foreground mb-6">{postData.date}</p>
+      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </article>
   );
 }
+// Note: Ensure that getPostData and getSortedPostsData are properly defined in "@/lib/posts"

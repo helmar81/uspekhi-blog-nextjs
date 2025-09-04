@@ -1,8 +1,6 @@
 ---
 title: 'Google Analytics'
-description: ' Analytics is a free web analytics service provided by Google.'
-pubDate: 'Jul 22 2022'
-heroImage: '../../assets/analytics.png'
+date: '2024-07-22'
 ---
 
 ## 📊 

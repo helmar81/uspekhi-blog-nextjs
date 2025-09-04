@@ -1,8 +1,9 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
+import { Suspense } from "react";
 
-export default function About() {
+function AboutContent() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold font-headline mb-4">About Me</h1>
@@ -23,7 +24,7 @@ export default function About() {
           with video, photography, and Web Development. Here are some photos
           which can be downloaded on{" "}
           <a
-            href="https://unsplash.com/@yourusername"
+            href="https://unsplash.com/@uspekhi"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center text-blue-600 hover:underline"
@@ -35,5 +36,14 @@ export default function About() {
         </p>
       </div>
     </div>
+  );
+}
+
+export default function About() {
+  return (
+    <Suspense fallback={<div>Loading About...</div>}>
+      <AboutContent />
+    </Suspense>
+    
   );
 }

@@ -8,6 +8,7 @@ import { PT_Sans, Playfair_Display } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Social from "@/components/Social";
 import Analytics from "@/components/Analytics";
+import { Suspense } from "react";
 
 const fontHeadline = Playfair_Display({
   subsets: ["latin"],
@@ -20,20 +21,24 @@ const fontBody = PT_Sans({
   weight: ["400", "700"],
 });
 
+const BASE_URL: URL = process.env.NEXT_PUBLIC_BASE_URL
+  ? new URL(process.env.NEXT_PUBLIC_BASE_URL)
+  : new URL("https://uspekhi.web.app/");
+
 export const metadata: Metadata = {
   title: "Uspekhi FullStack Blog",
   description:
     "Front to Back — Powered by AI. Created by Helmar Baechle. Covering fullstack development, AI, and beyond.",
   authors: [{ name: "Helmar Baechle", url: "https://uspekhi.web.app/" }],
+  metadataBase: BASE_URL,
   openGraph: {
     title: "Uspekhi FullStack Blog",
-    description:
-      "Front to Back — Powered by AI. Created by Helmar Baechle.",
-    url: "https://uspekhi.web.app/", // update with your domain
+    description: "Front to Back — Powered by AI. Created by Helmar Baechle.",
+    url: "https://uspekhi.web.app/",
     siteName: "Uspekhi FullStack",
     images: [
       {
-        url: "/fullstack.jpg", // must be in /public
+        url: "/fullstack.jpg",
         width: 1200,
         height: 630,
         alt: "Uspekhi FullStack Blog Logo",
@@ -47,7 +52,7 @@ export const metadata: Metadata = {
     title: "Uspekhi FullStack Blog",
     description:
       "Front to Back — Powered by AI. Created by Helmar Baechle.",
-    creator: "@yourtwitterhandle", // optional
+    creator: "@yourtwitterhandle",
     images: ["/fullstack.jpg"],
   },
 };
@@ -75,7 +80,11 @@ export default function RootLayout({
           fontBody.variable
         )}
       >
-        <Analytics />
+        {/* ✅ Suspense around Analytics */}
+        <Suspense fallback={<div className="text-sm text-muted-foreground px-4">Loading analytics…</div>}>
+          <Analytics />
+        </Suspense>
+
         <header className="py-4 px-4 sm:px-6 lg:px-8 border-b sticky top-0 bg-background/95 backdrop-blur-sm z-10">
           <div className="max-w-6xl mx-auto flex justify-between items-center">
             <Link
@@ -119,9 +128,14 @@ export default function RootLayout({
             </div>
           </div>
         </header>
+
+        {/* ✅ Suspense around children */}
         <main className="flex-grow w-full max-w-6xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-          {children}
+          <Suspense fallback={<div className="text-center text-muted-foreground">Loading page…</div>}>
+            {children}
+          </Suspense>
         </main>
+
         <footer className="py-9 lg:py-12 text-center bg-muted/50">
           <div className="mb-4">
             <nav>
@@ -139,7 +153,12 @@ export default function RootLayout({
               </ul>
             </nav>
           </div>
-          <Social />
+
+          {/* ✅ Suspense around Social */}
+          <Suspense fallback={<div className="text-sm text-muted-foreground">Loading social links…</div>}>
+            <Social />
+          </Suspense>
+
           <div className="text-sm y-5 text-muted-foreground">
             &copy;{new Date().getFullYear()} USPEKHI — Created by Helmar Baechle
           </div>

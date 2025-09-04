@@ -1,37 +1,44 @@
-"use client"; // needed because we have form event handling on the client
+"use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
 export default function ContactPage() {
-  const [status, setStatus] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
+    "idle"
+  );
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("loading");
 
-    const formData = new FormData(event.target as HTMLFormElement);
-    formData.append("access_key", "2cb04515-c91b-4371-a7ed-08db9ac063be"); // Replace with your Web3Forms key
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    // Prefer env var if available; fallback to existing key
+    formData.append(
+      "access_key",
+      process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "2cb04515-c91b-4371-a7ed-08db9ac063be"
+    );
 
     try {
+      const payload = JSON.stringify(Object.fromEntries(formData as any));
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
-        body: json,
+        body: payload,
       });
 
-      const result = await response.json();
-      if (result.success) {
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && (data?.success ?? true)) {
         setStatus("success");
+        form.reset();
       } else {
         setStatus("error");
       }
-    } catch {
+    } catch (err) {
       setStatus("error");
     }
   }
@@ -39,9 +46,7 @@ export default function ContactPage() {
   return (
     <section className="max-w-xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">Contact Me</h1>
-      <p className="mb-6 text-gray-600">
-        Fill out the form below and I’ll get back to you soon.
-      </p>
+      <p className="mb-6 text-gray-600">Fill out the form below and I’ll get back to you soon.</p>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
@@ -66,7 +71,7 @@ export default function ContactPage() {
           rows={4}
           required
           className="w-full border border-gray-300 rounded-md p-2"
-        ></textarea>
+        />
 
         <button
           type="submit"

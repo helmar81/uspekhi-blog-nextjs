@@ -1,10 +1,7 @@
 ---
-title: 'A Journey Begins'
-date: '2023-10-26
 title: 'Github is an Essential Tool for Developers'
-description: 'a powerful tool for developers, project managers, and content creators.'
+date: '2023-10-26'
 
-heroImage: '../../assets/github.png'
 ---
 
 ## 🐙 What is GitHub?

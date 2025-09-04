@@ -9,12 +9,12 @@ export default function Portfolio() {
     <div className="container mx-auto px-4 py-8 space-y-8">
       <div className="text-center">
         <h1 className="text-4xl font-bold font-headline mb-4">Portfolio</h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Welcome to my portfolio page! Here you can find a selection of my projects and skills.</p>
+        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Here you can find a selection of my projects and skills.</p>
       </div>
 
       <div className="mx-auto max-w-screen-md text-left space-y-6">
         <p className="text-base sm:text-lg leading-relaxed">
-          As a Level 3 Support Associate for Amazon, I excel at handling complex queries and escalated issues...xxxxxxxxxx
+        
         </p>
 
         <p className="text-base sm:text-lg leading-relaxed">

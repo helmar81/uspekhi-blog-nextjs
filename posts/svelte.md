@@ -1,8 +1,6 @@
 ---
 title: 'Build an App with SvelteKit'
-description: 'Pull content from anywhere and '
-date: '2023-10-26
-heroImage: '../../assets/svelte.png'
+date: '2023-10-26'
 ---
 
 Svelte is a rapidly growing front-end development framework that is designed for developer ergonomics and web best practices. It allows you to create fast and accessible websites. SvelteKit, the official back-end framework for Svelte, has also gained widespread adoption and recently reached version 1.0. Both Svelte and SvelteKit offer features such as components, scoped CSS, file-system based routing, and shortcuts for styling, reactivity, animations, and templating. These features make them strong contenders in the web development framework market.
