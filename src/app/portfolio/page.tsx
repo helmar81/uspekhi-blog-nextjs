@@ -37,6 +37,74 @@ export default function Portfolio() {
         <Card className="overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://pop2sync.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+                World Population (live)
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+
+             
+              <Image 
+                  src="/world.webp" 
+                  alt="World Population project" 
+                  fill
+                  style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created on Google AI Studio and deployed on Firebase.
+            </CardDescription>
+            <Button asChild>
+              <a href="https://pop2sync.web.app/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+
+
+      <div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://globe-time.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+               Geo Pulse
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+
+             
+              <Image 
+                  src="/time.webp" 
+                  alt="Geo Pulse project" 
+                  fill
+                  style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created on Google AI Studio and deployed on Firebase.
+            </CardDescription>
+            <Button asChild>
+              <a href="https://globe-time.web.app/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+<div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
               <a href="https://helmarbachle.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
                 Resume/CV
               </a>
@@ -65,6 +133,45 @@ export default function Portfolio() {
           </CardContent>
         </Card>
       </div>
+
+
+      <div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://geo-pull.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+               Top Restaurants in your Area
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+
+             
+              <Image 
+                  src="/top.jpg" 
+                  alt="Restaurants" 
+                  fill
+                  style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created with Claude and deployed on Firebase.
+            </CardDescription>
+            <Button asChild>
+              <a href="https://geo-pull.web.app/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+
+      
+
+
 
 
       <div className="mx-auto max-w-screen-md">

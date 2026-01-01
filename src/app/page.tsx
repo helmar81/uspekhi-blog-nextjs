@@ -10,6 +10,10 @@ export default async function Home() {
 
   // Make sure these files exist in your /public folder with exact casing
   const postImages = [
+     { src: "/images/fix.webp", hint: "Tailwind" },
+    { src: "/images/docker.jpg", hint: "Docker" },
+     { src: "/images/play.jpg", hint: "Play" },
+    { src: "/images/next.jpg", hint: "Next.js" },
     { src: "/images/firebase.jpg", hint: "Firebase" },
     { src: "/images/analytics.png", hint: "Google Analytics" },
     { src: "/images/AWS.png", hint: "AWS" },

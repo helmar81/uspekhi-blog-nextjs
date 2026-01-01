@@ -26,7 +26,7 @@ export default async function PostsPage() {
           Posts
         </h1>
         <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Explore our stories, ideas, and journeys.
+          Explore my projects.
         </p>
       </div>
 
