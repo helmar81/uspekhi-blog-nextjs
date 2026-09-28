@@ -1,14 +1,33 @@
-// next.config.js
-const webpack = require("webpack");
+import withPWA from "next-pwa";
+import type { NextConfig } from "next";
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  webpack: (config: any) => {
-    config.ignoreWarnings = [
-      { module: /handlebars/ }
-    ];
+const nextConfig: NextConfig = {
+  images: {
+    unoptimized: true,
+  },
+
+  // This handles the warning for Webpack (used in production builds)
+  webpack: (config) => {
+    config.ignoreWarnings = [{ module: /handlebars/ }];
     return config;
+  },
+
+  experimental: {
+    swcTraceProfiling: false,
+    // This handles equivalent settings for Turbopack (used in npm run dev)
+    turbo: {
+      rules: {
+        // If handlebars causes issues in Turbo, you can add rules here
+      },
+    },
   },
 };
 
-module.exports = nextConfig;
+const withPwaConfig = withPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === "development",
+});
+
+export default withPwaConfig(nextConfig);

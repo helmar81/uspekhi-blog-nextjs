@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://uspekhi.web.app//sitemap-index.xml

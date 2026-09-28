@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+// The stylesheet is handled by Next.js at build time and has no TypeScript module declaration.
+// @ts-expect-error -- intentional side-effect import of the global stylesheet
 import "./globals.css";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -9,6 +11,7 @@ import { cn } from "@/lib/utils";
 import Social from "@/components/Social";
 import Analytics from "@/components/Analytics";
 import { Suspense } from "react";
+
 
 const fontHeadline = Playfair_Display({
   subsets: ["latin"],
@@ -29,8 +32,13 @@ export const metadata: Metadata = {
   title: "Uspekhi FullStack Blog",
   description:
     "Front to Back — Powered by AI. Created by Helmar Baechle. Covering fullstack development, AI, and beyond.",
+
+  manifest: "/manifest.json",
+  themeColor: "#0f172a",
+
   authors: [{ name: "Helmar Baechle", url: "https://uspekhi.web.app/" }],
   metadataBase: BASE_URL,
+
   openGraph: {
     title: "Uspekhi FullStack Blog",
     description: "Front to Back — Powered by AI. Created by Helmar Baechle.",
@@ -47,12 +55,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Uspekhi FullStack Blog",
     description:
       "Front to Back — Powered by AI. Created by Helmar Baechle.",
-    creator: "@yourtwitterhandle",
+    creator: "@mediatrends64",
     images: ["/fullstack.jpg"],
   },
 };
@@ -62,6 +71,7 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/posts", label: "Posts" },
   { href: "/portfolio", label: "Portfolio" },
+  { href: "/videos", label: "Videos" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -72,6 +82,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+      </head>
+
       <body
         suppressHydrationWarning
         className={cn(
@@ -81,7 +94,13 @@ export default function RootLayout({
         )}
       >
         {/* ✅ Suspense around Analytics */}
-        <Suspense fallback={<div className="text-sm text-muted-foreground px-4">Loading analytics…</div>}>
+        <Suspense
+          fallback={
+            <div className="text-sm text-muted-foreground px-4">
+              Loading analytics…
+            </div>
+          }
+        >
           <Analytics />
         </Suspense>
 
@@ -91,8 +110,9 @@ export default function RootLayout({
               href="/"
               className="text-2xl font-bold font-headline text-foreground hover:text-primary transition-colors"
             >
-              FullStack
+              USPEKHI
             </Link>
+
             <nav className="hidden md:flex items-center space-x-6">
               {navLinks.map((link) => (
                 <Link
@@ -104,6 +124,7 @@ export default function RootLayout({
                 </Link>
               ))}
             </nav>
+
             <div className="md:hidden">
               <Sheet>
                 <SheetTrigger asChild>
@@ -129,9 +150,14 @@ export default function RootLayout({
           </div>
         </header>
 
-        {/* ✅ Suspense around children */}
         <main className="flex-grow w-full max-w-6xl mx-auto py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
-          <Suspense fallback={<div className="text-center text-muted-foreground">Loading page…</div>}>
+          <Suspense
+            fallback={
+              <div className="text-center text-muted-foreground">
+                Loading page…
+              </div>
+            }
+          >
             {children}
           </Suspense>
         </main>
@@ -154,8 +180,13 @@ export default function RootLayout({
             </nav>
           </div>
 
-          {/* ✅ Suspense around Social */}
-          <Suspense fallback={<div className="text-sm text-muted-foreground">Loading social links…</div>}>
+          <Suspense
+            fallback={
+              <div className="text-sm text-muted-foreground">
+                Loading social links…
+              </div>
+            }
+          >
             <Social />
           </Suspense>
 

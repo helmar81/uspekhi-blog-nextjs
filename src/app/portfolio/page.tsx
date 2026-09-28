@@ -33,6 +33,40 @@ export default function Portfolio() {
         </div>
       </div>
 
+
+       <div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://pop2sync.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+                Chat Bot 
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+      
+              <Image 
+                  src="/chat.jpg" 
+                  alt="Chat with Lorelyn" 
+                  fill
+                  style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created with Bedrock and Sveltekit deployed on Amplify.
+            </CardDescription>
+            <Button asChild>
+              <a href="https://main.d21aztovm3rx60.amplifyapp.com/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+
       <div className="mx-auto max-w-screen-md">
         <Card className="overflow-hidden">
           <CardHeader>
@@ -44,8 +78,7 @@ export default function Portfolio() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="relative w-full aspect-video rounded-md overflow-hidden">
-
-             
+      
               <Image 
                   src="/world.webp" 
                   alt="World Population project" 
@@ -59,6 +92,39 @@ export default function Portfolio() {
             </CardDescription>
             <Button asChild>
               <a href="https://pop2sync.web.app/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://vungtaulike.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+                Discover Vung Tau, the lovely Seaside town in Vietnam
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+
+             
+              <Image 
+                  src="/people.webp" 
+                  alt="World Population project" 
+                  fill
+                  style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created on Google AI Studio and deployed on Firebase.
+            </CardDescription>
+            <Button asChild>
+              <a href="https://vungtaulike.web.app/" rel="noopener noreferrer" target="_blank">
                 Visit Website <ExternalLink className="ml-2" />
               </a>
             </Button>

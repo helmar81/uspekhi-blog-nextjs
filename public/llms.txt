@@ -1,0 +1,108 @@
+# Uspekhi – Front to Back, Powered by AI
+
+> https://uspekhi.web.app
+
+A technical blog by Helmar Baechle for solo developers and small teams who want to blend modern full-stack development with practical AI to ship real products faster.
+
+## About
+
+Focus areas: SvelteKit, Next.js, React, Firebase, AWS, cloud functions, n8n automation, AI integration, and full-stack development workflows.
+
+This site helps developers understand how to use AI as an augmentation layer across their entire workflow—from ideation and coding to debugging and deployment—rather than treating it as a separate "magic" tool.
+
+## What This Site Helps With
+
+- How to use AI as an augmentation layer across your workflow (ideation, coding, debugging, deployment)
+- How to choose a realistic stack (SvelteKit, Next.js, Firebase, AWS, n8n, etc.) for small, AI-powered products
+- How to get a full-stack app from idea to production with minimal over-engineering
+- Practical deployment strategies for solo developers and small teams
+- Integrating AI capabilities into web applications without overcomplicating the stack
+
+## Site Structure
+
+- Homepage: https://uspekhi.web.app
+- All Posts: https://uspekhi.web.app/posts
+- About: https://uspekhi.web.app/about
+- Portfolio: https://uspekhi.web.app/portfolio
+- Contact: https://uspekhi.web.app/contact
+
+## Featured Articles (Start Here)
+
+### Will AI Replace Devs Who Don't Use AI?
+https://uspekhi.web.app/posts/ai-skins-or-be-replaced
+Why AI augmentation is becoming a baseline skill, not a nice-to-have. Explores how developers who don't integrate AI into their workflow may struggle to stay competitive.
+
+### Ship a SvelteKit App with Firebase
+https://uspekhi.web.app/posts/svelte
+A realistic path from idea to live app using SvelteKit and Firebase. Complete guide covering setup, development, and deployment for production-ready applications.
+
+### Firebase vs Netlify vs AWS
+https://uspekhi.web.app/posts/firebase-netlify-or-amazon-aws
+How to pick an infrastructure stack as a solo builder in 2026. Practical comparison of hosting platforms with real-world cost and complexity considerations.
+
+## Core Technical Guides
+
+### Deploy Next.js to Firebase
+https://uspekhi.web.app/posts/next-deploy
+Step-by-step guide to deploying a Next.js project to Firebase Hosting, including configuration tips, environment variables, and common pitfalls to avoid.
+
+### The Shift from Static to Generative
+https://uspekhi.web.app/posts/gemini
+How to integrate Google's Gemini model into a Next.js application on Firebase. Covers patterns for calling LLMs safely, efficiently, and cost-effectively.
+
+### Build with Astro
+https://uspekhi.web.app/posts/astro
+Modern static site generation with Astro. When to use Astro vs Next.js/SvelteKit, and how to leverage its content-focused architecture.
+
+### n8n with Docker: Build AI Agents Fast
+https://uspekhi.web.app/posts/docker
+Use n8n, Docker, and LLMs to build intelligent automations and simple AI agents in minutes—without managing complex infrastructure or learning DevOps.
+
+### Cloud Functions for Full-Stack Apps
+https://uspekhi.web.app/posts/cloud
+Practical guide to serverless functions with Firebase Cloud Functions and AWS Lambda. When to use them, how to structure them, and cost optimization tips.
+
+## Mobile & Distribution
+
+### A WebView Wrapper Guide
+https://uspekhi.web.app/posts/playstore
+How to wrap your web app in a WebView and publish it to the Google Play Store, so one codebase serves web and mobile users. Includes Play Store submission process.
+
+## Development Tools & Fixes
+
+### Fixing Tailwind Errors in Vite
+https://uspekhi.web.app/posts/TailwindFix
+Practical fixes for Tailwind CSS v4 issues in Vite projects, with copy-pasteable configuration snippets and troubleshooting common build errors.
+
+### Google Analytics Setup
+https://uspekhi.web.app/posts/Google-Analytics
+How to properly set up Google Analytics 4 in modern web applications, including Next.js and SvelteKit integration patterns.
+
+## Author
+
+**Helmar Baechle**
+Full-stack developer focused on practical AI integration, modern web stacks, and helping small teams get from prototype to production quickly.
+
+Expertise: Next.js, SvelteKit, React, Firebase, AWS, AI/LLM integration, automation with n8n, cloud architecture for solo developers.
+
+## Technology Stack Covered
+
+**Frontend:** SvelteKit, Next.js, React, Astro
+**Backend:** Firebase (Firestore, Auth, Hosting, Functions), AWS (Lambda, S3, CloudFront)
+**AI/ML:** Google Gemini, OpenAI, Claude, LLM integration patterns
+**DevOps:** Docker, n8n automation, CI/CD with GitHub Actions
+**Styling:** Tailwind CSS
+**Mobile:** WebView wrappers for Android/iOS
+
+## Content Categories
+
+- AI Integration & Automation
+- Full-Stack Development
+- Cloud Infrastructure & Deployment
+- Modern Web Frameworks
+- Mobile App Distribution
+- Developer Tooling & Workflow
+
+---
+
+Last updated: 2026-01-28
