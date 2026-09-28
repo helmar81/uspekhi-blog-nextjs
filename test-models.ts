@@ -1,0 +1,1 @@
+import 'dotenv/config'; import { GoogleGenAI } from '@google/genai'; const ai = new GoogleGenAI(); ai.models.list().then(res => { for (const m of res) console.log(m.name); }).catch(err => console.error(err));

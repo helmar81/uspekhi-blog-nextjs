@@ -36,7 +36,7 @@ export default async function PostsPage() {
           <Link href={`/posts/${id}`} key={id}>
             <Card className="hover:shadow-md hover:border-primary/50 transition-all duration-300">
               <CardHeader>
-                <CardTitle className="font-headline text-2xl text-primary-foreground hover:text-primary">
+                <CardTitle className="font-headline text-2xl text-foreground hover:text-primary">
                   {title}
                 </CardTitle>
                 <CardDescription>
@@ -52,4 +52,3 @@ export default async function PostsPage() {
     </div>
   );
 }
-

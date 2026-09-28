@@ -89,17 +89,17 @@ export default async function Home() {
 
           {/* Feature Cards */}
           <div className="lg:col-span-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            <Link href="/posts/ai-skins-or-be-replaced" className="group">
+            <Link href="/posts/aws-bedrock-sveltekit-rag-chatbot" className="group">
               <Card className="h-full border-2 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 hover:-translate-y-1">
                 <CardHeader className="space-y-3">
                   <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold shadow-lg">
                     AI
                   </div>
                   <CardTitle className="text-base group-hover:text-blue-600 transition-colors leading-snug">
-                    Will AI replace devs who don&apos;t use AI?
+                    RAG Chatbot with AWS Bedrock, S3 Vectors and SvelteKit
                   </CardTitle>
                   <CardDescription className="text-xs leading-relaxed">
-                    Why AI augmentation is becoming a baseline skill, not a nice-to-have.
+                   The combination  provides a powerful AWS-native foundation for building document-aware AI applications.
                   </CardDescription>
                 </CardHeader>
               </Card>

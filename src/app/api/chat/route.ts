@@ -24,9 +24,9 @@ export async function POST(req: Request) {
       ${knowledgeBase}
     `;
 
-    // Call Gemini 2.5 Flash
+    // Call Gemini 3.8 Flash
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.8-flash',
       contents: lastUserMessage,
       config: {
         systemInstruction,
