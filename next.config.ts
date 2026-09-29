@@ -1,33 +1,14 @@
-import withPWA from "next-pwa";
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
+  outputFileTracingRoot: path.join(__dirname),
+  turbopack: {
+    root: __dirname,
+  },
   images: {
-    unoptimized: true,
-  },
-
-  // This handles the warning for Webpack (used in production builds)
-  webpack: (config) => {
-    config.ignoreWarnings = [{ module: /handlebars/ }];
-    return config;
-  },
-
-  experimental: {
-    swcTraceProfiling: false,
-    // This handles equivalent settings for Turbopack (used in npm run dev)
-    turbo: {
-      rules: {
-        // If handlebars causes issues in Turbo, you can add rules here
-      },
-    },
+    unoptimized: true, // Serves images directly from static storage
   },
 };
 
-const withPwaConfig = withPWA({
-  dest: "public",
-  register: true,
-  skipWaiting: true,
-  disable: process.env.NODE_ENV === "development",
-});
-
-export default withPwaConfig(nextConfig);
+export default nextConfig;

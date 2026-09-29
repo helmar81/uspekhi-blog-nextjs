@@ -3,7 +3,10 @@ import { GoogleGenAI } from '@google/genai';
 import { NextResponse } from 'next/server';
 import { getKnowledgeContext } from '@/lib/getKnowledgeContext';
 
-const ai = new GoogleGenAI(); // Automatically uses process.env.GEMINI_API_KEY
+// Force dynamic execution so Next.js does not attempt static pre-rendering
+export const dynamic = 'force-dynamic';
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
 
 export async function POST(req: Request) {
   try {
@@ -24,19 +27,22 @@ export async function POST(req: Request) {
       ${knowledgeBase}
     `;
 
-    // Call Gemini 3.8 Flash
+    // Call Gemini 2.5 Flash
     const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
+      model: 'gemini-2.5-flash',
       contents: lastUserMessage,
       config: {
         systemInstruction,
-        temperature: 0.3, // Lower temperature keeps answers strictly grounded
+        temperature: 0.3,
       },
     });
 
     return NextResponse.json({ reply: response.text });
   } catch (error) {
     console.error('Chat error:', error);
-    return NextResponse.json({ error: 'Failed to process chat request' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to process chat request' },
+      { status: 500 }
+    );
   }
 }

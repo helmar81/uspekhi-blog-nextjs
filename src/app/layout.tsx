@@ -1,9 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-// The stylesheet is handled by Next.js at build time and has no TypeScript module declaration.
-// @ts-expect-error -- intentional side-effect import of the global stylesheet
-import "./globals.css";
+
 import { Button } from "@/components/ui/button";
+import "./globals.css";
+
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { PT_Sans, Playfair_Display } from "next/font/google";
@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 import Social from "@/components/Social";
 import Analytics from "@/components/Analytics";
 import { Suspense } from "react";
-
 
 const fontHeadline = Playfair_Display({
   subsets: ["latin"],
@@ -28,13 +27,16 @@ const BASE_URL: URL = process.env.NEXT_PUBLIC_BASE_URL
   ? new URL(process.env.NEXT_PUBLIC_BASE_URL)
   : new URL("https://uspekhi.web.app/");
 
+export const viewport: Viewport = {
+  themeColor: "#0f172a",
+};
+
 export const metadata: Metadata = {
   title: "Uspekhi FullStack Blog",
   description:
     "Front to Back — Powered by AI. Created by Helmar Baechle. Covering fullstack development, AI, and beyond.",
 
   manifest: "/manifest.json",
-  themeColor: "#0f172a",
 
   authors: [{ name: "Helmar Baechle", url: "https://uspekhi.web.app/" }],
   metadataBase: BASE_URL,
