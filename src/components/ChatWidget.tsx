@@ -1,4 +1,3 @@
-// src/components/ChatWidget.tsx
 'use client';
 
 import { useState } from 'react';
@@ -11,7 +10,7 @@ export default function ChatWidget() {
 
   async function sendMessage(e: React.FormEvent) {
     e.preventDefault();
-    if (!input.trim()) return;
+    if (!input.trim() || loading) return;
 
     const userMsg = { role: 'user' as const, content: input };
     const newMessages = [...messages, userMsg];
@@ -25,10 +24,27 @@ export default function ChatWidget() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: newMessages }),
       });
+
+      // Handle non-OK HTTP status gracefully (prevents JSON syntax errors)
+      if (!res.ok) {
+        const errorText = await res.text();
+        console.error(`Server error (${res.status}):`, errorText);
+        setMessages([
+          ...newMessages,
+          { role: 'assistant', content: 'Sorry, the chat service is currently unavailable. Please try again in a moment.' },
+        ]);
+        return;
+      }
+
       const data = await res.json();
-      setMessages([...newMessages, { role: 'assistant', content: data.reply }]);
+      const reply = data.reply || data.error || 'No response received.';
+      setMessages([...newMessages, { role: 'assistant', content: reply }]);
     } catch (err) {
-      console.error(err);
+      console.error('Network/Client Error:', err);
+      setMessages([
+        ...newMessages,
+        { role: 'assistant', content: 'Network error. Please check your connection and try again.' },
+      ]);
     } finally {
       setLoading(false);
     }
@@ -66,7 +82,9 @@ export default function ChatWidget() {
         <div className="h-64 overflow-y-auto mb-3 space-y-2 text-sm pr-1">
           {messages.map((m, i) => (
             <div key={i} className={m.role === 'user' ? 'text-right font-semibold' : 'text-left text-gray-700'}>
-              <p className="inline-block px-3 py-2 rounded-lg bg-gray-100">{m.content}</p>
+              <p className={`inline-block px-3 py-2 rounded-lg ${m.role === 'user' ? 'bg-blue-100 text-blue-900' : 'bg-gray-100'}`}>
+                {m.content}
+              </p>
             </div>
           ))}
           {loading && <p className="text-xs text-gray-400">Thinking...</p>}
@@ -76,9 +94,14 @@ export default function ChatWidget() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask a question..."
-            className="flex-1 border p-2 text-sm rounded outline-none focus:border-blue-500"
+            disabled={loading}
+            className="flex-1 border p-2 text-sm rounded outline-none focus:border-blue-500 disabled:bg-gray-50"
           />
-          <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors">
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors disabled:opacity-50"
+          >
             Send
           </button>
         </form>
