@@ -1,30 +1,31 @@
-// src/lib/getKnowledgeContext.ts
 import fs from 'fs';
 import path from 'path';
 
 export function getKnowledgeContext(): string {
-  // Directories containing markdown files based on your structure
-  const directoriesToRead = [
-    path.join(process.cwd(), 'posts'),
-    path.join(process.cwd(), 'src/app/about'),
-    path.join(process.cwd(), 'src/app/portfolio'),
-  ];
-
+  const contentDir = path.join(process.cwd(), 'src/content');
   let combinedContent = '';
 
-  directoriesToRead.forEach((dir) => {
-    if (!fs.existsSync(dir)) return;
+  function readDirectoryRecursively(dir: string) {
+    try {
+      if (!fs.existsSync(dir)) return;
 
-    const files = fs.readdirSync(dir);
+      const entries = fs.readdirSync(dir, { withFileTypes: true });
 
-    files.forEach((file) => {
-      if (file.endsWith('.md') || file.endsWith('.mdx')) {
-        const filePath = path.join(dir, file);
-        const fileContent = fs.readFileSync(filePath, 'utf-8');
-        combinedContent += `\n--- Document: ${file} ---\n${fileContent}\n`;
+      for (const entry of entries) {
+        const fullPath = path.join(dir, entry.name);
+
+        if (entry.isDirectory()) {
+          readDirectoryRecursively(fullPath);
+        } else if (entry.isFile() && (entry.name.endsWith('.md') || entry.name.endsWith('.mdx'))) {
+          const fileContent = fs.readFileSync(fullPath, 'utf-8');
+          combinedContent += `\n--- Document: ${entry.name} ---\n${fileContent}\n`;
+        }
       }
-    });
-  });
+    } catch (e) {
+      console.warn('Skipping knowledge dir:', dir, e);
+    }
+  }
 
+  readDirectoryRecursively(contentDir);
   return combinedContent;
 }

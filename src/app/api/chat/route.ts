@@ -1,60 +1,46 @@
-import { GoogleGenAI } from '@google/genai';
 import { NextResponse } from 'next/server';
-import { getKnowledgeContext } from '@/lib/getKnowledgeContext';
+import { ai } from '../../../ai/genkit';
 
-export const dynamic = 'force-dynamic';
+const getKnowledgeContext = () => '';
 
 export async function POST(req: Request) {
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
-    if (!apiKey) {
-      console.error('GEMINI_API_KEY is missing in environment variables.');
-      return NextResponse.json(
-        { error: 'API key configuration missing.' },
-        { status: 500 }
-      );
+    const { messages } = await req.json();
+
+    if (!messages || !Array.isArray(messages) || messages.length === 0) {
+      return NextResponse.json({ error: 'No messages provided.' }, { status: 400 });
     }
 
-    const { messages } = await req.json();
+    // Get the latest query from the user
     const lastUserMessage = messages[messages.length - 1]?.content || '';
 
-    // Load knowledge context safely
-    let knowledgeBase = '';
-    try {
-      knowledgeBase = getKnowledgeContext();
-    } catch (e) {
-      console.warn('Could not load knowledge context:', e);
-    }
+    // Load site blog posts & markdown content
+    const siteContent = getKnowledgeContext();
 
-    const systemInstruction = `
-      You are a helpful AI assistant for the website uspekhi.web.app.
-      Answer user questions clearly and concisely using the provided knowledge base below.
-      If the user's question cannot be answered using the provided knowledge, politely let them know.
+    const systemPrompt = `
+You are the official AI assistant for Uspekhi (uspekhi.web.app), created by Helmar Baechle.
+You specialize in full-stack web development, modern web technologies (Next.js, React, Astro, Svelte, SvelteKit, Angular), AI tools, and automation workflows.
 
-      --- KNOWLEDGE BASE ---
-      ${knowledgeBase}
-    `;
+Knowledge Base (Site Content & Blog Posts):
+${siteContent || 'No markdown documentation available.'}
 
-    // Initialize SDK with Google GenAI
-    const ai = new GoogleGenAI({ apiKey });
+Instructions:
+1. Answer general web development, framework, and AI programming questions directly and helpfully.
+2. If the user asks about Uspekhi, Helmar Baechle, or blog post topics, prioritize information from the Knowledge Base above.
+3. Keep responses concise, clear, and professional.
+`;
 
-    // Call gemini-3.8-flash (supported by @google/genai SDK v1beta)
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.8-flash',
-      contents: lastUserMessage,
-      config: {
-        systemInstruction,
-        temperature: 0.3,
-      },
+    // Call Genkit AI model
+    const response = await ai.generate({
+      model: 'googleai/gemini-3.8-flash',
+      prompt: `${systemPrompt}\n\nUser Question: ${lastUserMessage}`,
     });
 
-    const replyText = response.text || 'No response generated.';
-    return NextResponse.json({ reply: replyText });
-
-  } catch (error: any) {
-    console.error('Full Chat Route Error:', error);
+    return NextResponse.json({ reply: response.text });
+  } catch (error) {
+    console.error('Chat Route API Error:', error);
     return NextResponse.json(
-      { error: error?.message || 'Internal Server Error' },
+      { error: 'Failed to process chat request. Please try again.' },
       { status: 500 }
     );
   }

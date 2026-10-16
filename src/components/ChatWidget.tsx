@@ -1,20 +1,45 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+type Message = {
+  role: 'user' | 'assistant';
+  content: string;
+};
+
+const INITIAL_MESSAGE: Message = {
+  role: 'assistant',
+  content: 'Hello! I am the AI assistant for uspekhi.web.app. How can I help you today?',
+};
 
 export default function ChatWidget() {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
-  const [messages, setMessages] = useState<{ role: 'user' | 'assistant'; content: string }[]>([]);
+  const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
   const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages, isOpen]);
+
+  if (!mounted) return null;
 
   async function sendMessage(e: React.FormEvent) {
     e.preventDefault();
     if (!input.trim() || loading) return;
 
-    const userMsg = { role: 'user' as const, content: input };
-    const newMessages = [...messages, userMsg];
-    setMessages(newMessages);
+    const userMsg: Message = { role: 'user', content: input };
+    const updatedMessages = [...messages, userMsg];
+
+    setMessages(updatedMessages);
     setInput('');
     setLoading(true);
 
@@ -22,28 +47,33 @@ export default function ChatWidget() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: newMessages }),
+        body: JSON.stringify({ messages: updatedMessages }),
       });
 
-      // Handle non-OK HTTP status gracefully (prevents JSON syntax errors)
       if (!res.ok) {
         const errorText = await res.text();
         console.error(`Server error (${res.status}):`, errorText);
-        setMessages([
-          ...newMessages,
-          { role: 'assistant', content: 'Sorry, the chat service is currently unavailable. Please try again in a moment.' },
+        setMessages((prev) => [
+          ...prev,
+          {
+            role: 'assistant',
+            content: 'Sorry, the chat service is currently unavailable. Please try again in a moment.',
+          },
         ]);
         return;
       }
 
       const data = await res.json();
       const reply = data.reply || data.error || 'No response received.';
-      setMessages([...newMessages, { role: 'assistant', content: reply }]);
+      setMessages((prev) => [...prev, { role: 'assistant', content: reply }]);
     } catch (err) {
       console.error('Network/Client Error:', err);
-      setMessages([
-        ...newMessages,
-        { role: 'assistant', content: 'Network error. Please check your connection and try again.' },
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: 'Network error. Please check your connection and try again.',
+        },
       ]);
     } finally {
       setLoading(false);
@@ -65,10 +95,10 @@ export default function ChatWidget() {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 w-80 bg-white border rounded-lg shadow-2xl flex flex-col overflow-hidden z-50">
+    <div className="fixed bottom-6 right-6 w-80 sm:w-96 bg-white border rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
       <div className="bg-blue-600 p-3 text-white flex justify-between items-center">
-        <h3 className="font-semibold text-sm">Chat</h3>
-        <button 
+        <h3 className="font-semibold text-sm">Chat Assistant</h3>
+        <button
           onClick={() => setIsOpen(false)}
           className="text-white/80 hover:text-white transition-colors"
           aria-label="Close chat"
@@ -78,28 +108,38 @@ export default function ChatWidget() {
           </svg>
         </button>
       </div>
+
       <div className="p-4 text-black flex-1">
-        <div className="h-64 overflow-y-auto mb-3 space-y-2 text-sm pr-1">
+        <div className="h-72 overflow-y-auto mb-3 space-y-3 text-sm pr-1">
           {messages.map((m, i) => (
-            <div key={i} className={m.role === 'user' ? 'text-right font-semibold' : 'text-left text-gray-700'}>
-              <p className={`inline-block px-3 py-2 rounded-lg ${m.role === 'user' ? 'bg-blue-100 text-blue-900' : 'bg-gray-100'}`}>
+            <div key={i} className={m.role === 'user' ? 'text-right' : 'text-left'}>
+              <p
+                className={`inline-block px-3 py-2 rounded-lg max-w-[85%] text-left whitespace-pre-wrap ${
+                  m.role === 'user'
+                    ? 'bg-blue-600 text-white rounded-br-none'
+                    : 'bg-gray-100 text-gray-800 rounded-bl-none'
+                }`}
+              >
                 {m.content}
               </p>
             </div>
           ))}
-          {loading && <p className="text-xs text-gray-400">Thinking...</p>}
+          {loading && <p className="text-xs text-gray-400 italic">Thinking...</p>}
+          <div ref={messagesEndRef} />
         </div>
+
         <form onSubmit={sendMessage} className="flex gap-2">
           <input
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask a question..."
             disabled={loading}
-            className="flex-1 border p-2 text-sm rounded outline-none focus:border-blue-500 disabled:bg-gray-50"
+            autoFocus
+            className="flex-1 border p-2 text-sm rounded outline-none focus:border-blue-500 disabled:bg-gray-50 text-gray-900 placeholder:text-gray-400"
           />
-          <button 
-            type="submit" 
-            disabled={loading}
+          <button
+            type="submit"
+            disabled={loading || !input.trim()}
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition-colors disabled:opacity-50"
           >
             Send
