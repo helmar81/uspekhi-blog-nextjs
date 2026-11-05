@@ -1,6 +1,6 @@
 # Uspekhi – Front to Back, Powered by AI
 
-> https://uspekhi.web.app
+> [Visit Uspekhi](https://uspekhi.web.app)
 
 A technical blog by Helmar Baechle for solo developers and small teams who want to blend modern full-stack development with practical AI to ship real products faster.
 
@@ -20,62 +20,51 @@ This site helps developers understand how to use AI as an augmentation layer acr
 
 ## Site Structure
 
-- Homepage: https://uspekhi.web.app
-- All Posts: https://uspekhi.web.app/posts
-- About: https://uspekhi.web.app/about
-- Portfolio: https://uspekhi.web.app/portfolio
-- Contact: https://uspekhi.web.app/contact
+- Homepage: [Uspekhi](https://uspekhi.web.app)
+- All Posts: [Browse all posts](https://uspekhi.web.app/posts)
+- About: [About the author](https://uspekhi.web.app/about)
+- Portfolio: [Portfolio](https://uspekhi.web.app/portfolio)
+- Contact: [Contact](https://uspekhi.web.app/contact)
 
 ## Featured Articles (Start Here)
 
-### Will AI Replace Devs Who Don't Use AI?
-https://uspekhi.web.app/posts/ai-skins-or-be-replaced
+### [Will AI Replace Devs Who Don't Use AI?](https://uspekhi.web.app/posts/ai-skins-or-be-replaced)
 Why AI augmentation is becoming a baseline skill, not a nice-to-have. Explores how developers who don't integrate AI into their workflow may struggle to stay competitive.
 
-### Ship a SvelteKit App with Firebase
-https://uspekhi.web.app/posts/svelte
+### [Ship a SvelteKit App with Firebase](https://uspekhi.web.app/posts/svelte)
 A realistic path from idea to live app using SvelteKit and Firebase. Complete guide covering setup, development, and deployment for production-ready applications.
 
-### Firebase vs Netlify vs AWS
-https://uspekhi.web.app/posts/firebase-netlify-or-amazon-aws
+### [Firebase vs Netlify vs AWS](https://uspekhi.web.app/posts/firebase-netlify-or-amazon-aws)
 How to pick an infrastructure stack as a solo builder in 2026. Practical comparison of hosting platforms with real-world cost and complexity considerations.
 
 ## Core Technical Guides
 
-### Deploy Next.js to Firebase
-https://uspekhi.web.app/posts/next-deploy
+### [Deploy Next.js to Firebase](https://uspekhi.web.app/posts/next-deploy)
 Step-by-step guide to deploying a Next.js project to Firebase Hosting, including configuration tips, environment variables, and common pitfalls to avoid.
 
-### The Shift from Static to Generative
-https://uspekhi.web.app/posts/gemini
+### [The Shift from Static to Generative](https://uspekhi.web.app/posts/gemini)
 How to integrate Google's Gemini model into a Next.js application on Firebase. Covers patterns for calling LLMs safely, efficiently, and cost-effectively.
 
-### Build with Astro
-https://uspekhi.web.app/posts/astro
+### [Build with Astro](https://uspekhi.web.app/posts/astro)
 Modern static site generation with Astro. When to use Astro vs Next.js/SvelteKit, and how to leverage its content-focused architecture.
 
-### n8n with Docker: Build AI Agents Fast
-https://uspekhi.web.app/posts/docker
+### [n8n with Docker: Build AI Agents Fast](https://uspekhi.web.app/posts/docker)
 Use n8n, Docker, and LLMs to build intelligent automations and simple AI agents in minutes—without managing complex infrastructure or learning DevOps.
 
-### Cloud Functions for Full-Stack Apps
-https://uspekhi.web.app/posts/cloud
+### [Cloud Functions for Full-Stack Apps](https://uspekhi.web.app/posts/cloud)
 Practical guide to serverless functions with Firebase Cloud Functions and AWS Lambda. When to use them, how to structure them, and cost optimization tips.
 
 ## Mobile & Distribution
 
-### A WebView Wrapper Guide
-https://uspekhi.web.app/posts/playstore
+### [A WebView Wrapper Guide](https://uspekhi.web.app/posts/playstore)
 How to wrap your web app in a WebView and publish it to the Google Play Store, so one codebase serves web and mobile users. Includes Play Store submission process.
 
 ## Development Tools & Fixes
 
-### Fixing Tailwind Errors in Vite
-https://uspekhi.web.app/posts/TailwindFix
+### [Fixing Tailwind Errors in Vite](https://uspekhi.web.app/posts/TailwindFix)
 Practical fixes for Tailwind CSS v4 issues in Vite projects, with copy-pasteable configuration snippets and troubleshooting common build errors.
 
-### Google Analytics Setup
-https://uspekhi.web.app/posts/Google-Analytics
+### [Google Analytics Setup](https://uspekhi.web.app/posts/Google-Analytics)
 How to properly set up Google Analytics 4 in modern web applications, including Next.js and SvelteKit integration patterns.
 
 ## Author

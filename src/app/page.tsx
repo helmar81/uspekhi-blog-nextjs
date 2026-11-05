@@ -10,6 +10,7 @@ export default async function Home() {
   const displayPosts = allPostsData.slice(0, 6);
 
   const postImages = [
+    { src: '/images/chatbotknowledge.jpg', hint: 'Gemini' },
     { src: '/images/chatbot.jpg', hint: 'Bedrock' },
     { src: '/images/antigravity.webp', hint: 'Google' },
     { src: '/images/gemini.webp', hint: 'Gemini' },

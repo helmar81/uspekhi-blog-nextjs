@@ -34,11 +34,50 @@ export default function Portfolio() {
       </div>
 
 
+
+
+<div className="mx-auto max-w-screen-md">
+        <Card className="overflow-hidden">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold tracking-tight">
+              <a href="https://svelte-trading-bot.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+                BitcoinTrading Bot 
+              </a>
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="relative w-full aspect-video rounded-md overflow-hidden">
+      
+              <Image 
+                  src="/bitcoin.png" 
+                  alt="bitcoin project" 
+                  fill
+                  style={{objectFit: 'cover'}}
+                    data-ai-hint="website screenshot"
+                />
+            </div>
+            <CardDescription>
+              Created with Sveltekit and deployed on Google Firebase
+            </CardDescription>
+            <Button asChild>
+              <a href="https://svelte-trading-bot.web.app/" rel="noopener noreferrer" target="_blank">
+                Visit Website <ExternalLink className="ml-2" />
+              </a>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+
+
+
+
+
        <div className="mx-auto max-w-screen-md">
         <Card className="overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl font-bold tracking-tight">
-              <a href="https://pop2sync.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+              <a href="https://main.d21aztovm3rx60.amplifyapp.com/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
                 Chat Bot 
               </a>
             </CardTitle>
@@ -55,7 +94,7 @@ export default function Portfolio() {
                 />
             </div>
             <CardDescription>
-              Created with Bedrock and Sveltekit deployed on Amplify.
+              Created on Bedrock and deployed on AWS Amplify
             </CardDescription>
             <Button asChild>
               <a href="https://main.d21aztovm3rx60.amplifyapp.com/" rel="noopener noreferrer" target="_blank">
@@ -88,7 +127,7 @@ export default function Portfolio() {
                 />
             </div>
             <CardDescription>
-              Created on Google AI Studio and deployed on Firebase.
+              Created on Google AI Studio and deployed on Firebase
             </CardDescription>
             <Button asChild>
               <a href="https://pop2sync.web.app/" rel="noopener noreferrer" target="_blank">
@@ -404,26 +443,27 @@ export default function Portfolio() {
         <Card className="overflow-hidden">
           <CardHeader>
             <CardTitle className="text-2xl font-bold tracking-tight">
-              <a href="https://come2athens.web.app/tabs/tab1" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
-                German Speakers wanted
+              <a href="https://ndqvolatility.web.app/" rel="noopener noreferrer" target="_blank" className="hover:text-primary transition-colors">
+                Nasdaq Volatility Screener
+
               </a>
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="relative w-full aspect-video rounded-md overflow-hidden">
                 <Image 
-                    src="/images/athens.jpg" 
-                    alt="Athens project" 
+                    src="/images/ndq.png"
+                    alt="Nasdaq Volatility project" 
                     fill
                     style={{objectFit: 'cover'}}
                     data-ai-hint="website screenshot"
                 />
             </div>
             <CardDescription>
-              Created with Ionic deployed on Firebase.
+              Created with Sveltekit and deployed on Google Firebase.
             </CardDescription>
             <Button asChild>
-              <a href="https://come2athens.web.app/tabs/tab1" rel="noopener noreferrer" target="_blank">
+              <a href="https://ndqvolatility.web.app/" rel="noopener noreferrer" target="_blank">
                 Visit Website <ExternalLink className="ml-2" />
               </a>
             </Button>
