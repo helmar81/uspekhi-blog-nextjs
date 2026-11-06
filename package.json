@@ -48,9 +48,9 @@
     "firebase": "^11.10.0",
     "firebase-functions": "^6.4.0",
     "genkit": "^1.42.0",
-    "gray-matter": "^2.0.1",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^0.475.0",
-    "next": "^16.0.0",
+    "next": "16.3.7",
     "next-pwa": "^2.0.2",
     "patch-package": "^6.0.7",
     "react": "^18.3.1",
@@ -72,13 +72,14 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "baseline-browser-mapping": "^2.11.35",
-    "esbuild": "^0.28.2",
+    "esbuild": "^0.19.12",
     "firebase-frameworks": "^0.4.2",
     "firebase-tools": "^14.23.0",
     "genkit-cli": "^0.0.2",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "which": "^7.0.0"
   },
   "allowScripts": {
     "@firebase/util@1.12.1": true,
