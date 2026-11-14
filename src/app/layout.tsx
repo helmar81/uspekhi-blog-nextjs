@@ -6,6 +6,7 @@ import { PT_Sans, Playfair_Display } from "next/font/google";
 import { cn } from "@/lib/utils";
 import Social from "@/components/Social";
 import Analytics from "@/components/Analytics";
+import MobileNav from "@/components/MobileNav";
 import { Suspense } from "react";
 
 const fontHeadline = Playfair_Display({
@@ -44,28 +45,6 @@ const navLinks = [
   { href: "/videos", label: "Videos" },
   { href: "/contact", label: "Contact" },
 ];
-
-function MobileNav({
-  navLinks,
-}: {
-  navLinks: { href: string; label: string }[];
-}) {
-  return (
-    <div className="md:hidden">
-      <nav aria-label="Mobile navigation" className="flex flex-wrap items-center justify-end gap-3">
-        {navLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-          >
-            {link.label}
-          </Link>
-        ))}
-      </nav>
-    </div>
-  );
-}
 
 export default function RootLayout({
   children,

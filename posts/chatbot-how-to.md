@@ -1,9 +1,9 @@
 ---
-title: 'Chatbot Knowledgebase'
+title: 'Implementing a Knowledge-Aware Gemini Chatbot in Next.js '
 date: '2026-11-05'
 --- 
 
-# Implementing a Knowledge-Aware Gemini Chatbot in Next.js (Firebase Hosted)
+### Chatbot Knowledgebase (Firebase Hosted)
 
 This guide documents the complete setup process for embedding a dynamic, knowledge-grounded AI chatbot into a Next.js application deployed on Firebase.
 

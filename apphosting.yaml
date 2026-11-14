@@ -1,7 +1,21 @@
-# Settings to manage and configure a Firebase App Hosting backend.
-# https://firebase.google.com/docs/app-hosting/configure
-
+# Firebase App Hosting Configuration
 runConfig:
-  # Increase this value if you'd like to automatically spin up
-  # more instances in response to increased traffic.
-  maxInstances: 1
+  # Compute allocation
+  cpu: 1
+  memoryMiB: 1024       # 1024 MiB = 1 GiB (Options: 512, 1024, 2048, 4096)
+  
+  # Scaling limits
+  minInstances: 0       # Set to 1+ to eliminate cold starts
+  maxInstances: 10      # Caps maximum concurrent instances
+  
+  # Environment Variables
+env:
+  # Plain text environment variables
+  - variable: NODE_ENV
+    value: production
+  - variable: NEXT_PUBLIC_SITE_URL
+    value: https://uspekhi.web.app
+
+  # Sensitive API keys referencing Secret Manager
+  - variable: GEMINI_API_KEY
+    secret: GEMINI_API_KEY_SECRET
